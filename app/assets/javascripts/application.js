@@ -12,12 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
+//-
+//= require_tree ../templates
 //= require_tree .
 //= require_tree ./models
+//= require_tree ./views
+//= require underscore
+//= require jquery.serializeJSON.min
+
 
 PT.initialize = function() {
   PT.Photo.fetchByUserId(CURRENT_USER_ID, function(){
-    var $el = PT.PhotosListView.render();
+    var listView = new PT.PhotosListView
+    var $el = listView.render();
     $('#content').append($el);
+
+    var formView = new PT.PhotoFormView
+    var $form = formView.render();
+    $('#content').append($form);
   });
+
 }

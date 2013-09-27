@@ -1,4 +1,5 @@
 class Api::PhotosController < ApplicationController
+  before_filter :require_current_user!
 
   def index
     @user = User.find_by_id(params[:user_id])

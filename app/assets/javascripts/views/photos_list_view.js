@@ -1,31 +1,23 @@
 (function(root) {
   var PT = root.PT = (root.PT || {})
 
-  var PhotosListView = PT.PhotosListView = function(){ }
+  var PhotosListView = PT.PhotosListView = function(){
+    this.$el = $('<div></div>');
+  }
 
-  PhotosListView.$el = $('<div></div>');
-
-  PhotosListView.render = function() {
-    PhotosListView.$el.empty();
+  PhotosListView.prototype.render = function() {
+    this.$el.empty();
     var $ul = $('<ul></ul>');
-    PhotosListView.$el.append($ul);
-    console.log(PT.Photo.all)
+    this.$el.append($ul);
+
     PT.Photo.all.forEach(function(photo, i, allPhotos){
       var $li = $('<li></li>');
       $li.html(photo.title);
       $ul.append($li);
     });
 
-
-    return PhotosListView.$el;
+    return this.$el;
   }
-
-
-
-
-
-
-
 
 
 })(this)

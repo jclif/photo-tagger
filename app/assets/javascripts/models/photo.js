@@ -19,9 +19,9 @@
     var ajaxOptions = {
       url: '/api/photos',
       type: 'POST',
-      data: {'photo': this.attributes},
+      data: this.attributes,
       success: function(photoData) {
-        // TODO stuff happens on page
+        callback(photoData);
       }
     };
 
