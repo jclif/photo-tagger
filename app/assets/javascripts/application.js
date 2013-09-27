@@ -15,5 +15,9 @@
 //= require_tree .
 //= require_tree ./models
 
-
-var tester = "HI"
+PT.initialize = function() {
+  PT.Photo.fetchByUserId(CURRENT_USER_ID, function(){
+    var $el = PT.PhotosListView.render();
+    $('#content').append($el);
+  });
+}
