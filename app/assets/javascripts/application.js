@@ -22,6 +22,10 @@
 
 
 PT.initialize = function() {
+  PT.showPhotosIndex();
+}
+
+PT.showPhotosIndex = function() {
   PT.Photo.fetchByUserId(CURRENT_USER_ID, function(){
     var listView = new PT.PhotosListView
     var $el = listView.render();
@@ -31,5 +35,10 @@ PT.initialize = function() {
     var $form = formView.render();
     $('#content').append($form);
   });
+}
 
+PT.showPhotoDetail = function(photo) {
+  var detailView = new PT.PhotoDetailView(photo);
+  var $detail = detailView.render();
+  // TODO in Transitioning views paragraph 5, finish making links rerender with photos
 }

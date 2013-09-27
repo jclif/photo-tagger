@@ -4,17 +4,26 @@
   var PhotosListView = PT.PhotosListView = function(){
     this.$el = $('<div></div>');
     PT.Photo.on("add", this.render.bind(this));
+    this.$el.delegate('a', 'click', function(event) {
+      event.preventDefault();
+      console.log(event);
+    });
   }
 
-  PhotosListView.prototype.render = function() {
-    console.log(this);
+  PhotosListView.prototype.render = function(){
     this.$el.empty();
     var $ul = $('<ul></ul>');
     this.$el.append($ul);
 
     PT.Photo.all.forEach(function(photo, i, allPhotos){
       var $li = $('<li></li>');
-      $li.html(photo.title);
+      var li_string = '<a href="#" data-id="'
+      + photo.id
+      + '">'
+      + photo.title
+      + '</a>';
+
+      $li.html(li_string);
       $ul.append($li);
     });
 
