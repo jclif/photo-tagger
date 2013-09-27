@@ -1,4 +1,5 @@
-NewAuthDemo::Application.routes.draw do
+Phototagger::Application.routes.draw do
+
   resource :session, :only => [:create, :destroy, :new]
 
   resources :users, :only => [:create, :new, :show]
@@ -15,5 +16,5 @@ NewAuthDemo::Application.routes.draw do
     resources :photo_taggings, only: [:create]
   end
 
-  root :to => "users#show"
+  root :to => "static_pages#root"
 end
