@@ -1,2 +1,4 @@
-photo-tagger
+Photo Tagger
 ============
+
+Tags photos.
