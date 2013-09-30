@@ -23,7 +23,7 @@
       type: 'POST',
       data: {"photo_tagging" : this.attributes},
       success: function(photoTaggingData) {
-        callback(photoTaggingData);
+        callback(phot oTaggingData);
         _.extend(that.attributes, photoTaggingData);
 
         PhotoTagging.all.unshift(that.attributes)
