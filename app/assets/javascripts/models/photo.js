@@ -51,6 +51,19 @@
     $.ajax(ajaxOptions);
   };
 
+  Photo.fetchByUserId = function(userId, callback) {
+    var ajaxOptions = {
+      url: '/api/users/' + userId + '/photos',
+      type: 'GET',
+      success: function(response) {
+        Photo.all = Photo.photos_union(Photo.all, response);
+        callback();
+      }
+    }
+
+    $.ajax(ajaxOptions);
+  }
+
   Photo.photos_union = function(arr1, arr2) {
     var union = arr1.concat(arr2);
     var new_union = []
@@ -68,19 +81,6 @@
 
   Photo.photos_are_equal = function(p1, p2) {
     return p1.id === p2.id;
-  }
-
-  Photo.fetchByUserId = function(userId, callback) {
-    var ajaxOptions = {
-      url: '/api/users/' + userId + '/photos',
-      type: 'GET',
-      success: function(response) {
-        Photo.all = Photo.photos_union(Photo.all, response);
-        callback();
-      }
-    }
-
-    $.ajax(ajaxOptions);
   }
 
   Photo.find = function(photoId) {

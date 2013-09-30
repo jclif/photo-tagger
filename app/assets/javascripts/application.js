@@ -34,6 +34,14 @@ PT.showPhotosIndex = function() {
   });
 }
 
+PT.showPhotoTaggingsIndex = function(event, img) {
+  PT.PhotoTagging.fetchByPhotoId(CURRENT_USER_ID, function(){
+    var selectView = new PT.TagSelectView(event, img)
+    var $el = selectView.render();
+    $('#content').append($el);
+  });
+}
+
 PT.updatePhotoForm = function() {
   var formView = new PT.PhotoFormView
   var $form = formView.render();

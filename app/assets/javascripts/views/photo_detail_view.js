@@ -5,13 +5,16 @@
     this.$el = $('<div></div>');
     this.photo = photo;
 
+    this.setupClickHandler();
+  }
+
+  PhotoDetailView.prototype.setupClickHandler = function() {
     var that = this;
 
     this.$el.delegate('img', 'click', function(event) {
-      event.preventDefault();
-      console.log("clicked on da kitteh!")
+      PT.showPhotoTaggingsIndex(event, this);
     });
-  }
+  };
 
   PhotoDetailView.prototype.render = function() {
     this.$el.empty();
