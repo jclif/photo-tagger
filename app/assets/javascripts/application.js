@@ -22,6 +22,7 @@
 
 
 PT.initialize = function() {
+  PT.updatePhotoForm();
   PT.showPhotosIndex();
 }
 
@@ -30,15 +31,18 @@ PT.showPhotosIndex = function() {
     var listView = new PT.PhotosListView
     var $el = listView.render();
     $('#content').append($el);
-
-    var formView = new PT.PhotoFormView
-    var $form = formView.render();
-    $('#content').append($form);
   });
+}
+
+PT.updatePhotoForm = function() {
+  var formView = new PT.PhotoFormView
+  var $form = formView.render();
+  $('#content').append($form);
 }
 
 PT.showPhotoDetail = function(photo) {
   var detailView = new PT.PhotoDetailView(photo);
   var $detail = detailView.render();
-  // TODO in Transitioning views paragraph 5, finish making links rerender with photos
+
+  $('#content').html($detail);
 }

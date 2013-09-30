@@ -6,13 +6,14 @@
     PT.Photo.on("add", this.render.bind(this));
     this.$el.delegate('a', 'click', function(event) {
       event.preventDefault();
-      console.log(event);
+      photoId = $(this).data('id');
+      PT.showPhotoDetail(PT.Photo.find(photoId));
     });
   }
 
   PhotosListView.prototype.render = function(){
     this.$el.empty();
-    var $ul = $('<ul></ul>');
+    var $ul = $('<ul id="index"></ul>');
     this.$el.append($ul);
 
     PT.Photo.all.forEach(function(photo, i, allPhotos){

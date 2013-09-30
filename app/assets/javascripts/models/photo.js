@@ -51,17 +51,48 @@
     $.ajax(ajaxOptions);
   };
 
+  Photo.photos_union = function(arr1, arr2) {
+    var union = arr1.concat(arr2);
+    var new_union = []
+
+    for (var i = 0; i < union.length; i++) {
+      for (var j = i+1; j < union.length; j++) {
+        if (Photo.photos_are_equal(union[i], union[j])) {
+          union.splice(j, 1);
+        }
+      }
+    }
+
+    return union;
+  }
+
+  Photo.photos_are_equal = function(p1, p2) {
+    return p1.id === p2.id;
+  }
+
   Photo.fetchByUserId = function(userId, callback) {
     var ajaxOptions = {
       url: '/api/users/' + userId + '/photos',
       type: 'GET',
       success: function(response) {
-        Photo.all = Photo.all.concat(response);
+        Photo.all = Photo.photos_union(Photo.all, response);
         callback();
       }
     }
 
     $.ajax(ajaxOptions);
+  }
+
+  Photo.find = function(photoId) {
+    found_photo = undefined;
+
+    Photo.all.forEach(function(photo) {
+      if (photo.id === photoId) {
+        found_photo = photo;
+      }
+    });
+
+    return found_photo;
   }
 
 })(this);

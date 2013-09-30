@@ -6,11 +6,27 @@
     this.photo = photo;
 
     var that = this;
+
+    this.$el.delegate('img', 'click', function(event) {
+      event.preventDefault();
+      console.log("clicked on da kitteh!")
+    });
   }
 
   PhotoDetailView.prototype.render = function() {
     this.$el.empty();
-    var $photo_detail = JST["photo_detail"](this.photo);
+    var $back = $('<a href="#" id="back"></a>')
+    $back.html("Back")
+    this.$el.append($back)
+
+    this.$el.delegate('a[id="back"]', 'click', function(event) {
+      event.preventDefault();
+      $('#content').empty();
+      PT.initialize();
+    });
+
+    this.$el.append()
+    var $photo_detail = JST["photo_detail"]({"photo": this.photo});
     this.$el.append($photo_detail);
 
     return this.$el;

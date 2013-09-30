@@ -22,5 +22,12 @@
 
 <%= yield %>
 
+<script>
+<% if current_user %>
+  var CURRENT_USER_ID = <%= current_user.id %>
+  PT.initialize();
+<% end %>
+</script>
+
 </body>
 </html>
